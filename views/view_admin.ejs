@@ -1,0 +1,163 @@
+<%- include('header') %>
+<!-- MAIN CONTENT-->
+            <div class="main-content">
+                <div class="section__content section__content--p30">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <!-- DATA TABLE -->
+                                <h3 class="title-5 m-b-35">data table</h3>
+                                <div class="table-data__tool">
+                                    <div class="table-data__tool-left">
+                                        <div class="rs-select2--light rs-select2--md">
+                                            <select class="js-select2" name="property">
+                                                <option selected="selected">All Properties</option>
+                                                <option value="">Option 1</option>
+                                                <option value="">Option 2</option>
+                                            </select>
+                                            <div class="dropDownSelect2"></div>
+                                        </div>
+                                        <div class="rs-select2--light rs-select2--sm">
+                                            <select class="js-select2" name="time">
+                                                <option selected="selected">Today</option>
+                                                <option value="">3 Days</option>
+                                                <option value="">1 Week</option>
+                                            </select>
+                                            <div class="dropDownSelect2"></div>
+                                        </div>
+                                        <button class="au-btn-filter">
+                                            <i class="zmdi zmdi-filter-list"></i>filters</button>
+                                    </div>
+                                    <div class="table-data__tool-right">
+                                        <button class="au-btn au-btn-icon au-btn--green au-btn--small">
+                                            <i class="zmdi zmdi-plus"></i>add item</button>
+                                        <div class="rs-select2--dark rs-select2--sm rs-select2--dark2">
+                                            <select class="js-select2" name="type">
+                                                <option selected="selected">Export</option>
+                                                <option value="">Option 1</option>
+                                                <option value="">Option 2</option>
+                                            </select>
+                                            <div class="dropDownSelect2"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <form>
+                                    <div class="row align-items-center form-group">
+                                        <div class="col col-md-3">
+                                            <input type="text" name="search" placeholder="Search here" class="form-control" value="<%= search %>">
+                                        </div>
+                                        <div class="col-12 col-md-9">
+                                            <input type="submit" class="btn btn-primary btn-sm">
+                                        </div>
+                                    </div>
+                                </form>
+                                <form action="/admin/mulDel" method="post">
+                                    <div class="table-responsive table-responsive-data2">
+                                        <table class="table table-data2">
+                                            <thead>
+                                                <tr>
+                                                    <th>
+                                                        <label class="au-checkbox">
+                                                            <input type="checkbox" id="selectAll">
+                                                            <span class="au-checkmark"></span>
+                                                        </label>
+                                                    </th>
+                                                    <th>
+                                                        <button type="submit" class="item" style="font-size: 20px; line-height: 0;" data-toggle="tooltip" data-placement="top" title="Delete">
+                                                            <i class="zmdi zmdi-delete"></i>
+                                                        </button>
+                                                    </th>
+                                                    <th>Name</th>
+                                                    <th>Email</th>
+                                                    <th>Gender</th>
+                                                    <th>Hobby</th>
+                                                    <th>City</th>
+                                                    <th>Description</th>
+                                                    <th>Image</th>
+                                                    <th>Status</th>
+                                                    <th>Action</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <% if(data != ""){ for(let aData of data){ %>
+                                                    <tr class="tr-shadow">
+                                                        <td>
+                                                            <label class="au-checkbox">
+                                                                <input type="checkbox" class="checkboxSub" name="mulDelete[]" value="<%= aData.id %>">
+                                                                <span class="au-checkmark"></span>
+                                                            </label>
+                                                        </td>
+                                                        <td></td>
+                                                        <td><%= aData.name %></td>
+                                                        <td><%= aData.email %></td>
+                                                        <td><%= aData.gender %></td>
+                                                        <td><%= aData.hobby %></td>
+                                                        <td><%= aData.city %></td>
+                                                        <td><%= aData.description %></td>
+                                                        <td><img src="<%= aData.adminImage %>" height="100"/></td>
+                                                        <td>
+                                                            <% if(aData.isActive) { %>
+                                                                <a href="/admin/activeData/<%= aData.id %>" class="btn btn-success">Active</a>
+                                                            <% } else { %>
+                                                                <a href="/admin/deactiveData/<%= aData.id %>" class="btn btn-danger">Deactive</a>
+                                                            <% } %>
+                                                        </td>
+                                                        <td>
+                                                            <div class="table-data-feature">
+                                                                <button class="item" data-toggle="tooltip" data-placement="top" title="Send">
+                                                                    <i class="zmdi zmdi-mail-send"></i>
+                                                                </button>     
+                                                                <a href="/admin/updateAdmin/<%= aData.id %>" class="item" data-toggle="tooltip" data-placement="top" title="Edit">
+                                                                    <i class="zmdi zmdi-edit"></i>
+                                                                </a>
+                                                                <a href="/admin/deleteAdmin/<%= aData.id %>" class="item" data-toggle="tooltip" data-placement="top" title="Delete">
+                                                                    <i class="zmdi zmdi-delete"></i>
+                                                                </a>
+                                                                <button class="item" data-toggle="tooltip" data-placement="top" title="More">
+                                                                    <i class="zmdi zmdi-more"></i>
+                                                                </button>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                <% }}else{ %>
+                                                    <tr>
+                                                        <td colspan="10" class="text-center">
+                                                            <h3>Record not found</h3>
+                                                        </td>
+                                                    </tr>
+                                                <% } %>
+                                                <tr class="text-center">
+                                                    <td colspan="11">
+                                                        <% if(pageNo > 0){ %>
+                                                            <a href="?page=<%= pageNo - 1 %>&search=<%= search %>" class="btn btn-primary"><</a>
+                                                        <% } %>
+                                                        <% if(pageNo > 0){ %>
+                                                            <a href="?page=<%= pageNo - 1 %>&search=<%= search %>" class="btn border"><%= pageNo %></a>
+                                                        <% } %>
+                                                        <a href="?page=<%= pageNo %>&search=<%= search %>" class="btn btn-primary"><%= pageNo + 1 %></a>
+                                                        <% if(totalDocument > pageNo + 1){ %>
+                                                            <a href="?page=<%= pageNo + 1 %>&search=<%= search %>" class="btn border"><%= pageNo + 2 %></a>
+                                                        <% } %>
+                                                        <% if(totalDocument > pageNo + 1){ %>
+                                                            <a href="?page=<%= pageNo + 1 %>&search=<%= search %>" class="btn btn-primary">></a>
+                                                        <% } %>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </form>
+                                <!-- END DATA TABLE -->
+                            </div>
+                        </div>
+
+<%- include('footer') %>
+
+<script>
+    $(document).ready(function () {
+        $("#selectAll").click(function () {
+            $(".checkboxSub").attr('checked', this.checked);
+        });
+    });
+</script>

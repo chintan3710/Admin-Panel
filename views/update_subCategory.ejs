@@ -1,0 +1,66 @@
+<%- include('header') %>
+        <!-- MAIN CONTENT-->
+            <div class="main-content">
+                <div class="section__content section__content--p30">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <strong>Edit Sub Category</strong> Form
+                                    </div>
+                                    <div class="card-body card-block">
+                                        <form action="/admin/subCategory/editSubCategoryData" method="post" enctype="multipart/form-data" class="form-horizontal">
+                                            <input type="hidden" name="oldId" value="<%= subCategoryData.id %>" />
+                                            <div class="row form-group">
+                                                <div class="col col-md-3">
+                                                    <label for="select" class=" form-control-label">Select Category:</label>
+                                                </div>
+                                                <div class="col-12 col-md-9">
+                                                    <select name="categoryId" id="select" class="form-control">
+                                                        <option value="">-- Select Category --</option>
+                                                        <% categoryData.map((v)=>{ %>
+                                                            <option value="<%= v.id %>" <% if(v.category == subCategoryData.categoryId.category){ %> <%= 'selected' %> <% } %>><%= v.category %></option>
+                                                        <% }) %>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="row form-group">
+                                                <div class="col col-md-3">
+                                                    <label for="text-input" class=" form-control-label">Sub Category Title:</label>
+                                                </div>
+                                                <div class="col-12 col-md-9">
+                                                    <input type="text" id="text-input" name="title" placeholder="Sub Category Title" class="form-control" value="<%= subCategoryData.title %>">
+                                                </div>
+                                            </div>
+                                            <div class="row form-group">
+                                                <div class="col col-md-3">
+                                                    <label for="textarea-input" class=" form-control-label">Description:</label>
+                                                </div>
+                                                <div class="col-12 col-md-9">
+                                                    <textarea name="description" id="textarea-input" rows="3" placeholder="Description" class="form-control"><%= subCategoryData.description %></textarea>
+                                                </div>
+                                            </div>
+                                            <div class="row form-group">
+                                                <div class="col col-md-3">
+                                                    <label for="file-input" class=" form-control-label">Select File:</label>
+                                                </div>
+                                                <div class="col-12 col-md-9">
+                                                    <input type="file" id="file-input" name="subCategoryImage" class="form-control-file">
+                                                    <img src="<%= subCategoryData.subCategoryImage %>" width="100"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="card-footer">
+                                            <button type="submit" class="btn btn-primary btn-sm">
+                                                <i class="fa fa-dot-circle-o"></i> Submit
+                                            </button>
+                                            <button type="reset" class="btn btn-danger btn-sm">
+                                                <i class="fa fa-ban"></i> Reset
+                                            </button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+<%- include('footer') %>
