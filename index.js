@@ -11,8 +11,9 @@ const session = require("express-session");
 const mongoose = require("mongoose");
 
 mongoose
-    .connect(
-        "mongodb+srv://chintanrajpara34:Chintan2.2@cluster0.6ki67zr.mongodb.net/admin-db",
+.connect(
+        "mongodb+srv://chintanrajpara34:bNnjaGXuZKSGQQsY@cluster1.tupp2uw.mongodb.net/admin-db",
+        // "mongodb+srv://chintanrajpara34:Chintan2.2@cluster0.6ki67zr.mongodb.net/admin-db",
         {
             useUnifiedTopology: true,
             useNewUrlParser: true,
