@@ -34,8 +34,8 @@ app.set("views", path.join(__dirname, "views"));
 
 app.use(
     session({
-        name: "RNW",
-        secret: "RNW",
+        name: "blogAdmin",
+        secret: "blogAdmin",
         resave: false,
         saveUninitialized: false,
         cookie: {
