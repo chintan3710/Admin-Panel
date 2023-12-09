@@ -17,11 +17,11 @@ routes.get("/", async (req, res) => {
     }
 });
 
-routes.get("/dashboard", adminController.dashboard);
+routes.get("/dashboard", Passport.checkAuth, adminController.dashboard);
 
-routes.get("/add_admin",  adminController.add_admin);
+routes.get("/add_admin", Passport.checkAuth, adminController.add_admin);
 
-routes.get("/view_admin", adminController.view_admin);
+routes.get("/view_admin", Passport.checkAuth, adminController.view_admin);
 
 routes.post("/insertData", Admin.adminUploadImage, adminController.insertData);
 

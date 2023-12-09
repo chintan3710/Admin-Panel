@@ -13,11 +13,11 @@ module.exports.dashboard = async (req, res) => {
         //     return res.redirect("/admin");
         // }
         // let data = req.cookies.adminData;
-        return res.render("dashboard");
-        // if (req.isAuthenticated()) {
-        // } else {
-        //     return res.redirect("/admin/");
-        // }
+        if (req.isAuthenticated()) {
+            return res.render("dashboard");
+        } else {
+            return res.redirect("/admin/");
+        }
     } catch (err) {
         console.log(err);
         return res.redirect("back");
