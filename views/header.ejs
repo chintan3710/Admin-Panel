@@ -370,23 +370,23 @@
                                 <div class="account-wrap">
                                     <div class="account-item clearfix js-item-menu">
                                         <div class="image">
-                                            <img src="" alt="John Doe" />
+                                            <img src="<%= locals.user.adminImage %>" alt="John Doe" />
                                         </div>
                                         <div class="content">
-                                            <a class="js-acc-btn" href="#"></a>
+                                            <a class="js-acc-btn" href="#"><%= locals.user.name %></a>
                                         </div>
                                         <div class="account-dropdown js-dropdown">
                                             <div class="info clearfix">
                                                 <div class="image">
                                                     <a href="#">
-                                                        <img src="" alt="John Doe" />
+                                                        <img src="<%= locals.user.adminImage %>" alt="John Doe" />
                                                     </a>
                                                 </div>
                                                 <div class="content">
                                                     <h5 class="name">
-                                                        <a href="#"></a>
+                                                        <a href="#"><%= locals.user.name %></a>
                                                     </h5>
-                                                    <span class="email"></span>
+                                                    <span class="email"><%= locals.user.email %></span>
                                                 </div>
                                             </div>
                                             <div class="account-dropdown__body">
